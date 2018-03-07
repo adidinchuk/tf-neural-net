@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# custom (pycharm + data)
+/data
+.idea
+.vscode
