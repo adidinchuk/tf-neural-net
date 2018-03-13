@@ -15,7 +15,7 @@ This implementation leverages the GradientDescentOptimizer method for neural net
 ## Data
 The model was tested using a promotion history data set from [keggle](https://www.kaggle.com/datasets) found [here](https://www.kaggle.com/regivm/promotion-response-and-target-datasets). Two data sets are provided; promoted.csv and target.csv. All training was done using the promoted.csv data set as it has class values.
 
-####Features
+#### Features
 - [ ] `customer_id (column 1)` --- unique identifier, not used in this model
 - [x] `card_tenure (column 3)` --- card tenure in months
 - [x] `risk_score (column 4)` --- customer risk score
@@ -24,7 +24,7 @@ The model was tested using a promotion history data set from [keggle](https://ww
 - [x] `geo_group (column 7)` --- Geographical groups: NW, W, S, E, SE
 - [x] `res_type (column 8)` --- residence type: SI=single family, CO=cooperative, CN=condominium, RE=rental TO=townhouse
 
-####Transformations
+#### Transformations
 Categorical features geo_group and res_type were transformed into binary feature for each possible value using the expand_categorical_feature() method.
 ```python
 def expand_categorical_feature(feature):
@@ -38,10 +38,10 @@ def expand_categorical_feature(feature):
 *Empty values for string based features are replaced with 'N/A'*
 *Numerical features with 0 or null values are replaced by data set means*
 
-####Labels
+#### Labels
 - [x] resp (column 2) --- binary value indicating if a customer responded to the offer
 
-####Data extraction
+#### Data extraction
 The following code in the `train.py` file extracts features and performs the transformations described above:  
 ```python
 features_numeric = d.zero_to_mean([[float(row[2].strip()) if row[2].strip() else 0.,
@@ -126,7 +126,7 @@ for classification in classes:
 ## Results
 
 
-#### No class balancing for training data
+### No class balancing for training data
 The following hyperparams were used for training. In this training session class balancing was not used and the negative class can be seen to clearly dominate the data set.
 ```python
 learning_rate = 0.05
@@ -159,13 +159,13 @@ Epoch #1000 of 1000
 Training data loss:  0.06565612
 Training data accuracy:  0.93133336
 ```
-Loss function cost
+#### Loss function cost
 <img src="fig/loss_1.png">
 
-Accuracy
+#### Accuracy
 <img src="fig/accuracy_1.png">
 
-#### Implementation of class balancing
+### Implementation of class balancing
 The following hyperparams were used for training. Class balancing was used in this training session.
 ```python
 learning_rate = 0.05
@@ -198,18 +198,18 @@ Epoch #1000 of 1000
 Training data loss:  0.25249058
 Training data accuracy:  0.475
 ```
-Loss function cost
+#### Loss function cost
 <img src="fig/loss_2.png">
 
-Accuracy
+#### Accuracy
 <img src="fig/accuracy_2.png">
 
 Increasing the numbers of epochs by a factor of 10 results in a slightly better maximum accuracy of ~56%
 
-Loss function cost
+#### Loss function cost
 <img src="fig/loss_3.png">
 
-Accuracy
+#### Accuracy
 <img src="fig/accuracy_3.png">
 ```bash
 Epoch #10000 of 10000
@@ -219,10 +219,10 @@ Training data accuracy:  0.55
 
 Further increasing the batch size to 1000 further increases the model's performance to a maximum of ~64% and results in a much more stable model.
 
-Loss function cost
+#### Loss function cost
 <img src="fig/loss_4.png">
 
-Accuracy
+#### Accuracy
 <img src="fig/accuracy_4.png">
 ```bash
 Epoch #10000 of 10000
@@ -233,10 +233,10 @@ Training data accuracy:  0.55
 Although increasing the number of neurons in the hidden layer has no impact on performance, adding a hidden layer (`nn_structure = [10, 10]`) further boosts performance to a maximum of ~68%
 
 
-Loss function cost
+#### Loss function cost
 <img src="fig/loss_5.png">
 
-Accuracy
+#### Accuracy
 <img src="fig/accuracy_5.png">
 ```bash
 Epoch #10000 of 10000
