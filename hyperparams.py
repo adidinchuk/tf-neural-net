@@ -17,7 +17,7 @@ validation_size = 0.4
 
 # structure & activations
 nn_structure = [10]
-nn_activations = ['na', 'na', 'na']
+nn_activations = ['relu', 'sigmoid']
 
 # auto balance classes
 auto_balance = True

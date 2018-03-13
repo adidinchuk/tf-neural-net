@@ -55,5 +55,5 @@ test_outputs = target[test_index]
 
 
 nn = nwk.Network(len(features[0]), len(target[0]), hp.nn_structure, hp.nn_activations)
-nn.train(train_inputs, train_outputs, test_inputs, test_outputs, auto_balance=hp.auto_balance, plot=False,
+nn.train(train_inputs, train_outputs, test_inputs, test_outputs, auto_balance=hp.auto_balance, plot=True,
          loss_function=hp.loss_function, batch_size=hp.batch_size, epochs=hp.epochs, learning_rate=hp.learning_rate)

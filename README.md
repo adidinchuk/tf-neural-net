@@ -104,8 +104,8 @@ test_outputs = target[test_index]
 * `batch_size = 500` -- training batch size
 * `epochs = 1000` -- number of training epochs
 * `validation_size = 0.4` -- percentage of the data set to be used for validation against over-fitting
-* `nn_structure = [14, 14, 14]` -- array dictating the number of neurons in each hidden layer
-* `nn_activations = ['na', 'na', 'na']` -- array dictating which activation function will be used in each hidden layer (TODO: feature not yet implemented)
+* `nn_structure = [10]` -- array dictating the number of neurons in each hidden layer
+* `nn_activations = ['sigmoid', 'sigmoid']` -- array dictating which activation function will be used in each hidden layer
 * `auto_balance = True` -- boolean to pass along during training to specify if the data samples need to be balanced to account for uneven class ratios (classification only)
 * `loss_function = 'l2'` -- loss function to be used for training
 
@@ -175,7 +175,7 @@ auto_balance = True
 loss_function = 'l2'
 ```
 
-The model attains a maximum classification accuracy of ~52%, which is not much better than random classification. 
+The model attains a maximum classification accuracy of ~50%, which is not much better than random classification. 
 ```bash
 λ python train.py
 Row 4 expanded into the following categories: ['E', 'N', 'N/A', 'SE', 'W']
@@ -201,7 +201,7 @@ Training data accuracy:  0.475
 <img src="fig/loss_2.png">
 <img src="fig/accuracy_2.png">
 
-Increasing the numbers of epochs by a factor of 10 results in a slightly better maximum accuracy of ~56%
+Increasing the numbers of epochs by a factor of 10 results in a slightly better maximum accuracy of ~55%
 
 #### Loss function cost and Accuracy
 
@@ -214,19 +214,7 @@ Training data loss:  0.23636797
 Training data accuracy:  0.55
 ```
 
-Further increasing the batch size to 1000 further increases the model's performance to a maximum of ~64% and results in a much more stable model.
-
-#### Loss function cost and Accuracy
-<img src="fig/loss_4.png">
-<img src="fig/accuracy_4.png">
-
-```bash
-Epoch #10000 of 10000
-Training data loss:  0.23636797
-Training data accuracy:  0.55
-```
-
-Although increasing the number of neurons in the hidden layer has no impact on performance, adding a hidden layer (`nn_structure = [10, 10]`) further boosts performance to a maximum of ~68%
+Although increasing the number of neurons in the hidden layer has no impact on performance, adding a hidden layer (`nn_structure = [10, 10], nn_activations = ['sigmoid', 'sigmoid']`) further boosts performance to ~66%
 
 
 #### Loss function cost and Accuracy
