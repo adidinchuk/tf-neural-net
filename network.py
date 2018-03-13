@@ -71,7 +71,8 @@ class Network:
         self.optimization = tf.train.GradientDescentOptimizer(learning_rate)
         self.training_step = self.optimization.minimize(self.loss)
 
-        training_loss, testing_loss, training_accuracy, testing_accuracy = [], [], [], []
+        training_loss_results, testing_loss_results = [], []
+        training_accuracy_results, testing_accuracy_results = [], []
         positive = []
 
         #p = np.where(inputs == [1])[0]
@@ -92,22 +93,34 @@ class Network:
 
             self.session.run(self.training_step, feed_dict={
                 self.features: train_inputs[batch_index], self.target: train_outputs[batch_index]})
+            if plot:
+                training_accuracy, training_loss = self.generate_step_tracking_data(train_inputs, train_outputs)
+                training_loss_results.append(training_loss)
+                training_accuracy_results.append(training_accuracy)
 
-            training_loss.append(self.session.run(self.loss, feed_dict={
-                self.features: train_inputs, self.target: train_outputs}))
-            testing_loss.append(self.session.run(self.loss, feed_dict={
-                self.features: test_inputs, self.target: test_outputs}))
+                testing_accuracy, testing_loss = self.generate_step_tracking_data(test_inputs, test_outputs)
+                testing_loss_results.append(testing_loss)
+                testing_accuracy_results.append(testing_accuracy)
 
-            #positive.append(self.session.run(self.accuracy, feed_dict={
-            #    self.features: inputs[p], self.target: outputs[p]}))
+                #positive.append(self.session.run(self.accuracy, feed_dict={
+                #    self.features: inputs[p], self.target: outputs[p]}))
 
-            training_accuracy.append(self.session.run(self.accuracy, feed_dict={
-                self.features: train_inputs, self.target: train_outputs}))
-            testing_accuracy.append(self.session.run(self.accuracy, feed_dict={
-                self.features: test_inputs, self.target: test_outputs}))
+            if (iteration+1) % (epochs / 5) == 0:
+                if not plot:
+                    training_accuracy, training_loss = self.generate_step_tracking_data(train_inputs, train_outputs)
+                    training_loss_results.append(training_loss)
+                    training_accuracy_results.append(training_accuracy)
 
-        u.plot_loss(training_loss. testing_loss)
-        u.plot_accuracy(training_accuracy. testing_accuracy)
+                    testing_accuracy, testing_loss = self.generate_step_tracking_data(test_inputs, test_outputs)
+                    testing_loss_results.append(testing_loss)
+                    testing_accuracy_results.append(testing_accuracy)
+
+                # if not plotting, get intermittent accuracy and loss
+                u.print_progress(iteration, epochs, training_loss_results[-1], training_accuracy_results[-1])
+
+        if plot:
+            u.plot_loss(training_loss_results, testing_loss_results)
+            u.plot_accuracy(training_accuracy_results, testing_accuracy_results)
 
     # TODO: add functionality to select between activation functions
     def activate(self, activation, input):
@@ -120,3 +133,8 @@ class Network:
 
     def loss_l2(self):
         self.loss = tf.reduce_mean(tf.square(self.final_output - self.target))
+
+    def generate_step_tracking_data(self, inputs, targets):
+        accuracy = self.session.run(self.accuracy, feed_dict={self.features: inputs, self.target: targets})
+        loss = self.session.run(self.loss, feed_dict={self.features: inputs, self.target: targets})
+        return accuracy, loss

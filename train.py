@@ -8,6 +8,9 @@ import data as d
 import numpy as np
 import network as nwk
 
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 data = d.import_data('promoted.csv', headers=True)
 
 features_numeric = d.zero_to_mean([[float(row[2].strip()) if row[2].strip() else 0.,
@@ -51,5 +54,6 @@ test_inputs = features[test_index]
 test_outputs = target[test_index]
 
 
-nn = nwk.Network(len(features[0]), len(target[0]), [14, 14, 14], ['na', 'na', 'na'])
-nn.train(train_inputs, train_outputs, test_inputs, test_outputs, auto_balance=True)
+nn = nwk.Network(len(features[0]), len(target[0]), hp.nn_structure, hp.nn_activations)
+nn.train(train_inputs, train_outputs, test_inputs, test_outputs, auto_balance=hp.auto_balance, plot=False,
+         loss_function=hp.loss_function, batch_size=hp.batch_size, epochs=hp.epochs, learning_rate=hp.learning_rate)
