@@ -197,14 +197,17 @@ Training data loss:  0.25249058
 Training data accuracy:  0.475
 ```
 #### Loss function cost and Accuracy
+
 <img src="fig/loss_2.png">
 <img src="fig/accuracy_2.png">
 
 Increasing the numbers of epochs by a factor of 10 results in a slightly better maximum accuracy of ~56%
 
 #### Loss function cost and Accuracy
+
 <img src="fig/loss_3.png">
 <img src="fig/accuracy_3.png">
+
 ```bash
 Epoch #10000 of 10000
 Training data loss:  0.23636797
@@ -216,6 +219,7 @@ Further increasing the batch size to 1000 further increases the model's performa
 #### Loss function cost and Accuracy
 <img src="fig/loss_4.png">
 <img src="fig/accuracy_4.png">
+
 ```bash
 Epoch #10000 of 10000
 Training data loss:  0.23636797
@@ -228,6 +232,7 @@ Although increasing the number of neurons in the hidden layer has no impact on p
 #### Loss function cost and Accuracy
 <img src="fig/loss_5.png">
 <img src="fig/accuracy_5.png">
+
 ```bash
 Epoch #10000 of 10000
 Training data loss:  0.23361777
