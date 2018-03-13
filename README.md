@@ -159,10 +159,8 @@ Epoch #1000 of 1000
 Training data loss:  0.06565612
 Training data accuracy:  0.93133336
 ```
-#### Loss function cost
+#### Loss function cost and Accuracy
 <img src="fig/loss_1.png">
-
-#### Accuracy
 <img src="fig/accuracy_1.png">
 
 ### Implementation of class balancing
@@ -198,18 +196,14 @@ Epoch #1000 of 1000
 Training data loss:  0.25249058
 Training data accuracy:  0.475
 ```
-#### Loss function cost
+#### Loss function cost and Accuracy
 <img src="fig/loss_2.png">
-
-#### Accuracy
 <img src="fig/accuracy_2.png">
 
 Increasing the numbers of epochs by a factor of 10 results in a slightly better maximum accuracy of ~56%
 
-#### Loss function cost
+#### Loss function cost and Accuracy
 <img src="fig/loss_3.png">
-
-#### Accuracy
 <img src="fig/accuracy_3.png">
 ```bash
 Epoch #10000 of 10000
@@ -219,10 +213,8 @@ Training data accuracy:  0.55
 
 Further increasing the batch size to 1000 further increases the model's performance to a maximum of ~64% and results in a much more stable model.
 
-#### Loss function cost
+#### Loss function cost and Accuracy
 <img src="fig/loss_4.png">
-
-#### Accuracy
 <img src="fig/accuracy_4.png">
 ```bash
 Epoch #10000 of 10000
@@ -233,10 +225,8 @@ Training data accuracy:  0.55
 Although increasing the number of neurons in the hidden layer has no impact on performance, adding a hidden layer (`nn_structure = [10, 10]`) further boosts performance to a maximum of ~68%
 
 
-#### Loss function cost
+#### Loss function cost and Accuracy
 <img src="fig/loss_5.png">
-
-#### Accuracy
 <img src="fig/accuracy_5.png">
 ```bash
 Epoch #10000 of 10000
