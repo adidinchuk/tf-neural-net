@@ -206,7 +206,7 @@ Increasing the numbers of epochs by a factor of 10 results in a slightly better 
 #### Loss function cost and Accuracy
 
 <img src="fig/loss_3.png">
-<img src="fig/accuracy_3.png">
+<img src="fig/accuracy_3.png">w
 
 ```bash
 Epoch #10000 of 10000

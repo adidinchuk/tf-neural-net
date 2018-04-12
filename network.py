@@ -6,7 +6,7 @@ https://github.com/adidinchuk/tf-neural-net
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
-import utils as u
+#import utils as u
 
 
 class Network:
@@ -118,11 +118,11 @@ class Network:
                     testing_loss_results.append(testing_loss)
                     testing_accuracy_results.append(testing_accuracy)
 
-                u.print_progress(iteration, epochs, training_loss_results[-1], training_accuracy_results[-1])
+                #u.print_progress(iteration, epochs, training_loss_results[-1], training_accuracy_results[-1])
 
-        if plot:
-            u.plot_loss(training_loss_results, testing_loss_results)
-            u.plot_accuracy(training_accuracy_results, testing_accuracy_results)
+        #if plot:
+            #u.plot_loss(training_loss_results, testing_loss_results)
+            #u.plot_accuracy(training_accuracy_results, testing_accuracy_results)
 
     # TODO: add functionality to select between activation functions
     def activate(self, activation, ax):
